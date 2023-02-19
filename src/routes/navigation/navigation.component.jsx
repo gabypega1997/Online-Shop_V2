@@ -1,5 +1,6 @@
 import { Fragment, useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
@@ -18,7 +19,8 @@ import {
 } from "./navigation.styles.jsx";
 
 const Navigation = () => {
-    const { currentUser } = useContext(UserContext);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    console.log(currentUser);
     const { showDropdown } = useContext(CartContext);
 
     const signOutHandler = async () => {
@@ -31,20 +33,13 @@ const Navigation = () => {
                     <CrwnLogo className="logo" />
                 </LogoContainer>
                 <NavLinks>
-                    <NavLink  to="/shop">
-                        SHOP
-                    </NavLink>
+                    <NavLink to="/shop">SHOP</NavLink>
                     {currentUser ? (
-                        <NavLink
-                            as="span"
-                            onClick={signOutHandler}
-                        >
+                        <NavLink as="span" onClick={signOutHandler}>
                             SIGN OUT
                         </NavLink>
                     ) : (
-                        <NavLink to="/auth">
-                            SIGN IN
-                        </NavLink>
+                        <NavLink to="/auth">SIGN IN</NavLink>
                     )}
                     <CartIcon />
                 </NavLinks>
