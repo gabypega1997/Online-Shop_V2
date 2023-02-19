@@ -1,4 +1,39 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
+
+const CART_ACTION_TYPES = {
+    SET_SHOW_DROPDOWN: "SET_SHOW_DROPDOWN",
+    SET_CART_ITEMS: "SET_CART_ITEMS",
+    SET_CART_TOTAL: "SET_CART_TOTAL",
+    SET_CART_COUNT: "SET_CART_COUNT",
+};
+
+const cartReducer = (state, action) => {
+    const { type, payload } = action;
+    console.log(state, payload, type);
+    switch (type) {
+        case CART_ACTION_TYPES.SET_SHOW_DROPDOWN:
+            return {
+                showDropdown: !state.showDropdown,
+            };
+        case CART_ACTION_TYPES.SET_CART_ITEMS:
+            return {
+                cartItems: [...payload],
+            };
+        case CART_ACTION_TYPES.SET_CART_TOTAL:
+            return {
+                cartTotal: payload,
+            };
+        default:
+            throw new Error(`Unhandled type ${type} in userReducer`);
+    }
+};
+
+const INITIAL_STATE = {
+    showDropdown: false,
+    cartItems: [],
+    cartCount: 0,
+    cartTotal: 0,
+};
 
 const addCartItem = (cartItems, productToAdd) => {
     const existingCartItem = cartItems.find(
@@ -49,11 +84,28 @@ export const CartContext = createContext({
 });
 
 export const CartProvider = ({ children }) => {
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
-    const [cartCount, setCartCount] = useState(0);
-    const [cartTotal, setcartTotal] = useState(0);
+    const [{ showDropdown, cartItems, cartCount, cartTotal }, dispach] =
+        useReducer(cartReducer, INITIAL_STATE);
 
+    const setShowDropdown = () => {
+        dispach({ type: CART_ACTION_TYPES.SET_SHOW_DROPDOWN });
+    };
+
+    const setCartItems = (items) => {
+        dispach({ type: CART_ACTION_TYPES.SET_CART_ITEMS, payload: items });
+    };
+
+    const setCartCount = () => {};
+
+    const setcartTotal = (total) => {
+        dispach({ type: CART_ACTION_TYPES.SET_CART_TOTAL, payload: total });
+    };
+
+    // const [showDropdown, setShowDropdown] = useState(false);
+    // const [cartItems, setCartItems] = useState([]);
+    // const [cartCount, setCartCount] = useState(0);
+    // const [cartTotal, setcartTotal] = useState(0);
+    console.log(cartItems.map(item=>item));
     useEffect(() => {
         const newCartCount = cartItems.reduce(
             (cartTotal, cartItem) => cartTotal + cartItem.quantity,
