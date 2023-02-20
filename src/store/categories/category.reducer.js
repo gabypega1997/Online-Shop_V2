@@ -9,10 +9,8 @@ export const categoriesReducer = (
     action = {}
 ) => {
     const { type, payload } = action;
-    console.log(type);
     switch (type) {
         case CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP:
-            console.log(CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP);
             return { ...state, categoriesMap: payload };
         default:
             return state;
