@@ -6,6 +6,8 @@ const CART_ACTION_TYPES = {
     SET_SHOW_DROPDOWN: "SET_SHOW_DROPDOWN",
     SET_CART_ITEMS: "SET_CART_ITEMS",
 };
+
+
 const INITIAL_STATE = {
     showDropdown: false,
     cartItems: [],
