@@ -16,12 +16,15 @@ import {
     ProductCardContainer,
 } from "./product-card.styles.jsx";
 import { setCartItems } from "../../store/cart/cart.action";
+import { cartSelector } from "../../store/cart/cart.selector";
 
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
     const { name, price, imageUrl } = product;
 
-    const cartItems = useSelector((state)=>state.cart.cartItems)
+    const cartItems = useSelector(cartSelector);
+
+    
     const { addItemToCart } = useContext(CartContext);
 
     const addPoductToCart = () => {
