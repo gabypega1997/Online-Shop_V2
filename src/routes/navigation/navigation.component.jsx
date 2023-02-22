@@ -18,10 +18,11 @@ import {
     NavLink,
     NavLinks,
 } from "./navigation.styles.jsx";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
-    const { showDropdown } = useContext(CartContext);
+    const showDropdown = useSelector(selectIsCartOpen);
 
     const signOutHandler = async () => {
         await signOutUser();
