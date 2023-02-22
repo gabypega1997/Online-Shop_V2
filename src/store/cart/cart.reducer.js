@@ -7,9 +7,6 @@ const INITIAL_STATE = {
     cartTotal: 0,
 };
 
-
-
-
 export const cartReducer = (state = INITIAL_STATE, action = {}) => {
     const { type, payload } = action;
     switch (type) {
@@ -19,9 +16,10 @@ export const cartReducer = (state = INITIAL_STATE, action = {}) => {
                 showDropdown: payload,
             };
         case CART_ACTION_TYPES.SET_CART_ITEMS:
+            console.log(payload);
             return {
                 ...state,
-                cartItems: [...state.cartItems, payload],
+                ...payload,
             };
         default:
             return state;
