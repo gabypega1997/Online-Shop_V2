@@ -23,7 +23,7 @@ import {
 const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
     const showDropdown = useSelector(selectIsCartOpen);
-
+    
     const signOutHandler = async () => {
         await signOutUser();
     };

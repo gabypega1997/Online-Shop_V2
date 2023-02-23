@@ -5,7 +5,7 @@ import {
     selectIsCartOpen,
 } from "../../store/cart/cart.selector";
 
-import { setShowDropdown } from "../../store/cart/cart.action";
+import { setIsCartOpen } from "../../store/cart/cart.action";
 
 import {
     ItemCount,
@@ -20,7 +20,7 @@ const CartIcon = () => {
     const cartCount = useSelector(selectCartCount);
 
     const toogleDropdown = () => {
-        dispatch(setShowDropdown(!showDropdown));
+        dispatch(setIsCartOpen(!showDropdown));
     };
 
     return (

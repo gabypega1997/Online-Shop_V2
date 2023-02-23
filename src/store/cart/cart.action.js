@@ -20,5 +20,5 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
     return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
-export const setShowDropdown = (bool) =>
-    createAction(CART_ACTION_TYPES.SET_SHOW_DROPDOWN, bool);
+export const setIsCartOpen = (bool) =>
+    createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool);
