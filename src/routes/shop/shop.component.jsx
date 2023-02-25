@@ -9,6 +9,7 @@ import Category from "../category/category.component";
 const Shop = () => {
     const dispatch = useDispatch();
     useEffect(() => {
+        console.log("loading");
         dispatch(fetchCategoriesAsync());
     }, []);
 
