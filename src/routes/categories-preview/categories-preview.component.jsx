@@ -10,6 +10,8 @@ import {
 } from "../../store/categories/category.selector";
 
 const CategoriesPreview = () => {
+    console.log("ss");
+
     const categoriesMap = useSelector(selectCategoriesMap);
     const isLoading = useSelector(selectIsLoading);
 
