@@ -10,9 +10,8 @@ const DirectoryItem = ({ category }) => {
     const { imageUrl, title } = category;
     const navigator = useNavigate();
 
-    const goToCategoryHandler = () => {
-        navigator(`/shop/${title.toLowerCase()}`);
-    };
+    const goToCategoryHandler = () => navigator(`/shop/${title.toLowerCase()}`);
+    
 
     return (
         <DirectoryItemContainer onClick={goToCategoryHandler}>
