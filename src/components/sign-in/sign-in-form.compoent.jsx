@@ -10,6 +10,11 @@ import {
 import "./sign-in-form.style.jsx";
 import { SignInButtons, SignInContainer } from "./sign-in-form.style.jsx";
 
+//saga
+import { useDispatch } from "react-redux";
+
+import { onSignInWithGoogle } from "../../store/user/user.saga";
+
 const defaultFormFields = {
     email: "",
     password: "",
@@ -19,11 +24,13 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
+    const dispatch = useDispatch();
+
     const resetFormInputs = () => {
         setFormFields(defaultFormFields);
     };
-    const signInWithGoogle = async () => {
-        await signInWithGooglePopup();
+    const signInWithGoogle = () => {
+        dispatch(onSignInWithGoogle());
     };
 
     const handleSubmit = async (event) => {
