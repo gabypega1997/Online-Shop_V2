@@ -1,4 +1,3 @@
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 import { USER_ACTION_TYPES } from "./user.type";
@@ -34,4 +33,14 @@ export const signUpSuccess = (user, additionalDetails) =>
         additionalDetails,
     });
 
-export const signUpFailed = (error) => createAction(USER_ACTION_TYPES.SET_CURRENT_USER,error)
+export const signUpFailed = (error) =>
+    createAction(USER_ACTION_TYPES.SET_CURRENT_USER, error);
+
+export const signOutStart = () =>
+    createAction(USER_ACTION_TYPES.SIGN_OUT_START);
+
+export const signOutSuccess = () =>
+    createAction(USER_ACTION_TYPES.SIGN_OUT_SUCCESS);
+
+export const signOutFailed = (error) =>
+    createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED, error);
